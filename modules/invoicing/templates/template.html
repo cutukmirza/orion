@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+    <title>Page Title</title>
+    <style>
+        body { 
+            height:297mm; 
+            width:210mm; 
+            margin-left:auto; 
+            margin-right:auto; 
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12pt;
+            position: relative;
+            min-height: 100vh;
+            padding-bottom: 2.5rem;
+            text-rendering: geometricPrecision;
+        }
+        .row {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: left;
+        }
+        .block {
+            display: inline-block;
+        }
+        .footer {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width:100%;
+            height: 15%;
+            background-color: #005e9e;
+            color: white;
+            text-align: center;
+        }
+        
+        a {
+            color:lightblue;
+            text-decoration: none;
+            
+        }
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        table{
+            text-align: center;
+            width: 100%;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        .table-header{
+            background-color: #005e9e;
+            color: white;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            margin-bottom: -120px;
+            width: 100%;
+            height: 150px;            /* Footer height */
+            background-color: #005e9e;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="row" style="height: 15%;">
+        <div class="block" style="margin-right: 7%;">
+        <p>
+            {{ sender_committee}} <br>
+            {{ sender_name }} <br>
+            {{ sender_address1 }} <br>
+            {{ sender_address2 }} <br>
+            {{ sender_cc }}
+        </p>
+        </div>
+        <div class="block">
+            <img src="../templates/img/iaeste-ch-logo.jpg"/>
+        </div>
+    </div>
+    <div class="row" style="height: 10%;">
+        <div class="block">
+            <h2>
+                Invoice : {{ invoice_nr }} <br> 
+                {{ sender_committee_short }} <br>
+                {{ invoice_date }}
+            </h2>
+        </div>
+    </div>
+    <div class="row" style="height: 15%;">
+        <div class="block" style="width: 100%;">
+            <p style="text-align: right; width: 100%;">
+                To: <br> 
+                {{ receive_committee }} <br>
+                {{ receive_address1 }} <br>
+                {{ receive_address2 }} <br>
+                {{ receive_cc }}
+            </p>
+        </div>
+    </div>
+    <div class="row" style="height: 25%;">
+        <p>
+            <br>
+            Dear {{ receive_committee_short }} Financial Team, <br><br>
+            Please find the invoice for the {{ invoice_subject }} contribution of {{ receive_committee_short }}. 
+            May we kindly ask you to remit the sum to our bank account at the Swiss post bank, Switzerland, 
+            in a period of <strong>30 days net</strong>: <br> <br>
+
+            PC: {{ sender_pc}} <br>
+            {{ sender_address_full }} <br>
+            IBAN: {{ sender_iban }} <br>
+            BIC: {{ sender_bic }} <br><br>
+
+        </p>
+    </div>
+
+    <div class="row" style="height: auto">
+        <Table>
+            <tr class="table-header">
+                <th>#</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>CHF</th>    
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Accommodation</td>
+                <td>1</td>
+                <td>250</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Accommodation</td>
+                <td>1</td>
+                <td>250</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Accommodation</td>
+                <td>1</td>
+                <td>250</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Accommodation</td>
+                <td>1</td>
+                <td>250</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Accommodation</td>
+                <td>1</td>
+                <td>250</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td class="table-header">Total</td>
+                <td>With TVA exemption (TVA 0%)</td>
+                <td>-</td>
+                <td>-</td>
+                <td>250</td>
+            </tr>
+
+        </Table>
+    </div>
+    <div class="row" style="height: auto">
+        <p>
+            <br>
+            Yours Sincerely, <br>
+            {{ sender_committee }} <br>
+            {{ sender_name }}
+        </p>
+    </div>
+
+    <div class="footer" style="color: white;">
+        <p style="text-align: center;">
+            IAESTE Switzerland | {{ sender_name }} | {{ sender_phone }} | {{ sender_email }}
+        </p>
+    </div>
+
+</body>
+</html> 
