@@ -3,7 +3,7 @@ from dash import html, dcc
 import dash_bootstrap_components as dbc
 
 # Internal
-from elements.sidebar import sidebar
+from .elements.sidebar import sidebar
 
 
 CONTENT_STYLE = {
@@ -17,3 +17,4 @@ base_layout = html.Div([
     sidebar,
     html.Div(id="page-content", style=CONTENT_STYLE)
 ])
+

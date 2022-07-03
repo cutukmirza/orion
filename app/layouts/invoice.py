@@ -2,7 +2,7 @@ from dash import html, callback, Input, Output, State, no_update, dash_table
 import dash_bootstrap_components as dbc
 import datetime
 
-from modules.invoicing.main import generate_invoice
+from app.modules.invoicing.main import generate_invoice
 
 tab1_content = dbc.Card(
     dbc.CardBody(
