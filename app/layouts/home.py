@@ -1,25 +1,11 @@
 from dash import html, dcc
 import dash_bootstrap_components as dbc
-
-
-import pdfkit
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-import datetime
-import re
-
 
 from app.models.db.member import User
 from app.models.db.shared import server
-from app.models.db.shared import db
-import config
 
-### Temporary solution
-### Need to find a way to have 
-### just one server and one db object
-### That will be used everywhere
-server.config.from_object(config.DevelopmentConfig)
-db.init_app(server)
-server.app_context().push()
+server.getInstance().app_context().push()
 
 user = User.read_one(1)
 print(user)
@@ -35,8 +21,6 @@ rendered_string = env.get_template('sig.html').render(
         phone = user.phone,
         committee = user.committee,
         )
-
-print(rendered_string)
 
 home_layout = html.Div(children=[
     html.H1(children='Hello Mirza'),

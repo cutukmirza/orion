@@ -9,7 +9,6 @@ from app.layouts.invoice import invoice_layout
 from app.layouts.members import member_layout
 from app.layouts.alumni import alumni_layout
 from flask import Flask
-import config
 from app.models.db.shared  import db
 from app.models.db.shared  import server
 
@@ -23,19 +22,18 @@ def create_app(test_config=None):
 
     app = Dash(__name__, suppress_callback_exceptions=True, 
     external_stylesheets=[dbc.themes.BOOTSTRAP, FONT_AWESOME],
-    server=server)
+    server=server.getInstance())
 
-    server.config.from_object(config.DevelopmentConfig)
 
     
     app.title = "Orion"
     #app._favicon = "images/favicon.png"
 
     # CORS(app)
-    db.init_app(server)
+    
     migrate = Migrate(app, db)
 
-    with server.app_context():
+    with server.getInstance().app_context():
         # app.layout = html.Div(children=[
         #     html.H1(children='Hello Dash'),
 

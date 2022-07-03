@@ -1,7 +1,4 @@
 """
-This app creates a simple sidebar layout using inline style arguments and the
-dbc.Nav component.
-
 dcc.Location is used to track the current location, and a callback uses the
 current location to render the appropriate page content. The active prop of
 each NavLink is set automatically according to the current pathname. To use
@@ -10,9 +7,11 @@ this feature you must install dash-bootstrap-components >= 0.11.0.
 For more details on building multi-page Dash applications, check out the Dash
 documentation: https://dash.plot.ly/urls
 """
+# External
 import dash_bootstrap_components as dbc
 from dash import html, dcc
-
+# Internal
+from app.img import img
 
 # the style arguments for the sidebar. We use position:fixed and a fixed width
 SIDEBAR_STYLE = {
@@ -25,12 +24,10 @@ SIDEBAR_STYLE = {
     "background-color": "#f8f9fa",
 }
 
-# the styles for the main content position it to the right of the sidebar and
-# add some padding.
-
 sidebar = html.Div(
     [
-        html.H2("IAESTE Switzerland", className="display-5"),
+        html.Img(width='100%', src="data:image/png;base64,{}".format(img.iaeste_logo_blue.decode())),
+        #html.H2("IAESTE Switzerland", className="display-5"),
         html.Hr(),
         html.P(
             "A simple management system", className="lead"

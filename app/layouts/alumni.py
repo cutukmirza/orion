@@ -4,16 +4,14 @@ import dash_bootstrap_components as dbc
 from app.img import img
 from app.models.db.member import Member
 from app.models.db.shared import server
-from app.models.db.shared import db
-import config
+
 
 ### Temporary solution
 ### Need to find a way to have 
 ### just one server and one db object
 ### That will be used everywhere
-server.config.from_object(config.DevelopmentConfig)
-db.init_app(server)
-server.app_context().push()
+server.getInstance().app_context().push()
+
 
 rows = [html.Tr([html.Td(member['name']), html.Td(member['city']), html.Td(member['company']), html.Td(member['email'])]) for member in Member.read_all()]
 table_body = html.Tbody(rows)

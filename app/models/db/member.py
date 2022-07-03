@@ -1,17 +1,18 @@
 import traceback
 from .shared import db
 
+db_instance = db.getInstance()
 
-class Member(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False)
-    city = db.Column(db.String, nullable=False)
-    company = db.Column(db.String, nullable=False)
-    email = db.Column(db.String, nullable=False)
-    phone = db.Column(db.String, nullable=False)
-    committee = db.Column(db.String, nullable=False)
-    last_active = db.Column(db.DateTime, nullable=False)
-    alumni = db.Column(db.Boolean, nullable=False)
+class Member(db_instance.Model):
+    id = db_instance.Column(db_instance.Integer, primary_key=True)
+    name = db_instance.Column(db_instance.String, nullable=False)
+    city = db_instance.Column(db_instance.String, nullable=False)
+    company = db_instance.Column(db_instance.String, nullable=False)
+    email = db_instance.Column(db_instance.String, nullable=False)
+    phone = db_instance.Column(db_instance.String, nullable=False)
+    committee = db_instance.Column(db_instance.String, nullable=False)
+    last_active = db_instance.Column(db_instance.DateTime, nullable=False)
+    alumni = db_instance.Column(db_instance.Boolean, nullable=False)
 
     def __init__(self, name, city, company, email, phone, committee, last_active):
         self.name = name
@@ -29,8 +30,8 @@ class Member(db.Model):
     def create(name, city, company, email, phone, committee, last_active):
         try:
             new_member = Member(name, city, company, email, phone, committee, last_active)
-            db.session.add(new_member)
-            db.session.commit()
+            db_instance.session.add(new_member)
+            db_instance.session.commit()
             return True
         except Exception:
             print("error Member create" + " " + traceback.format_exc())
@@ -72,7 +73,7 @@ class Member(db.Model):
     #     try:
     #         customer_to_update = run_query(Customer.query.get, *[id])
     #         customer_to_update.name = name
-    #         run_query(db.session.commit)
+    #         run_query(db_instance.session.commit)
     #         return True
     #     except Exception:
     #         print("error Customer update" + " " + traceback.format_exc())
@@ -83,8 +84,8 @@ class Member(db.Model):
         try:
             member = Member.query.get(id)
             if member is not None:
-                db.session.delete(member)
-                db.session.commit()
+                db_instance.session.delete(member)
+                db_instance.session.commit()
                 return True
             else:
                 print(f"Member with id: {id} does not exist :: in customer.delete()")
@@ -93,12 +94,12 @@ class Member(db.Model):
             print("error Member delete" + " " + traceback.format_exc())
             return False
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False)
-    email = db.Column(db.String, nullable=False)
-    phone = db.Column(db.String, nullable=False)
-    committee = db.Column(db.String, nullable=False)
+class User(db_instance.Model):
+    id = db_instance.Column(db_instance.Integer, primary_key=True)
+    name = db_instance.Column(db_instance.String, nullable=False)
+    email = db_instance.Column(db_instance.String, nullable=False)
+    phone = db_instance.Column(db_instance.String, nullable=False)
+    committee = db_instance.Column(db_instance.String, nullable=False)
 
     def __init__(self, name, city, company, email, phone, committee, last_active):
         self.name = name
@@ -113,8 +114,8 @@ class User(db.Model):
     def create(name, email, phone, committee):
         try:
             new_user = Member(name, email, phone, committee)
-            db.session.add(new_user)
-            db.session.commit()
+            db_instance.session.add(new_user)
+            db_instance.session.commit()
             return True
         except Exception:
             print("error User create" + " " + traceback.format_exc())
@@ -153,7 +154,7 @@ class User(db.Model):
     #     try:
     #         customer_to_update = run_query(Customer.query.get, *[id])
     #         customer_to_update.name = name
-    #         run_query(db.session.commit)
+    #         run_query(db_instance.session.commit)
     #         return True
     #     except Exception:
     #         print("error Customer update" + " " + traceback.format_exc())
@@ -164,8 +165,8 @@ class User(db.Model):
         try:
             member = Member.query.get(id)
             if member is not None:
-                db.session.delete(member)
-                db.session.commit()
+                db_instance.session.delete(member)
+                db_instance.session.commit()
                 return True
             else:
                 print(f"Member with id: {id} does not exist :: in customer.delete()")
